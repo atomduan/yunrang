@@ -1,0 +1,10 @@
+show:
+1. jar path
+   ./hadooptool-hbase-*.jar
+2. mapreduce config file
+   mr.conf
+3. input paths file
+   ./paths.lst
+4. to run the import script file
+   ./input.py or python input.py
+
