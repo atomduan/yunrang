@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunrang.location.datamgr.mysql.mapper.RepoCellStationDoMapper" >
+  <resultMap id="BaseResultMap" type="com.yunrang.location.datamgr.mysql.model.RepoCellStationDo" >
+    <id column="cell_station_id" property="cellStationId" jdbcType="INTEGER" />
+    <result column="mcc" property="mcc" jdbcType="INTEGER" />
+    <result column="mnc" property="mnc" jdbcType="INTEGER" />
+    <result column="lac" property="lac" jdbcType="INTEGER" />
+    <result column="cell" property="cell" jdbcType="INTEGER" />
+    <result column="accuracy" property="accuracy" jdbcType="INTEGER" />
+    <result column="geo_id" property="geoId" jdbcType="INTEGER" />
+    <result column="tuple_status" property="tupleStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cell_station_id, mcc, mnc, lac, cell, accuracy, geo_id, tuple_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yunrang.location.datamgr.mysql.model.RepoCellStationDoCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from repo_cell_station
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from repo_cell_station
+    where cell_station_id = #{cellStationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from repo_cell_station
+    where cell_station_id = #{cellStationId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yunrang.location.datamgr.mysql.model.RepoCellStationDoCriteria" >
+    delete from repo_cell_station
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yunrang.location.datamgr.mysql.model.RepoCellStationDo" useGeneratedKeys="true" keyProperty="cellStationId">
+    insert into repo_cell_station (cell_station_id, mcc, mnc, 
+      lac, cell, accuracy, 
+      geo_id, tuple_status)
+    values (#{cellStationId,jdbcType=INTEGER}, #{mcc,jdbcType=INTEGER}, #{mnc,jdbcType=INTEGER}, 
+      #{lac,jdbcType=INTEGER}, #{cell,jdbcType=INTEGER}, #{accuracy,jdbcType=INTEGER}, 
+      #{geoId,jdbcType=INTEGER}, #{tupleStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yunrang.location.datamgr.mysql.model.RepoCellStationDo" useGeneratedKeys="true" keyProperty="cellStationId">
+    insert into repo_cell_station
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cellStationId != null" >
+        cell_station_id,
+      </if>
+      <if test="mcc != null" >
+        mcc,
+      </if>
+      <if test="mnc != null" >
+        mnc,
+      </if>
+      <if test="lac != null" >
+        lac,
+      </if>
+      <if test="cell != null" >
+        cell,
+      </if>
+      <if test="accuracy != null" >
+        accuracy,
+      </if>
+      <if test="geoId != null" >
+        geo_id,
+      </if>
+      <if test="tupleStatus != null" >
+        tuple_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cellStationId != null" >
+        #{cellStationId,jdbcType=INTEGER},
+      </if>
+      <if test="mcc != null" >
+        #{mcc,jdbcType=INTEGER},
+      </if>
+      <if test="mnc != null" >
+        #{mnc,jdbcType=INTEGER},
+      </if>
+      <if test="lac != null" >
+        #{lac,jdbcType=INTEGER},
+      </if>
+      <if test="cell != null" >
+        #{cell,jdbcType=INTEGER},
+      </if>
+      <if test="accuracy != null" >
+        #{accuracy,jdbcType=INTEGER},
+      </if>
+      <if test="geoId != null" >
+        #{geoId,jdbcType=INTEGER},
+      </if>
+      <if test="tupleStatus != null" >
+        #{tupleStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yunrang.location.datamgr.mysql.model.RepoCellStationDoCriteria" resultType="java.lang.Integer" >
+    select count(*) from repo_cell_station
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update repo_cell_station
+    <set >
+      <if test="record.cellStationId != null" >
+        cell_station_id = #{record.cellStationId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mcc != null" >
+        mcc = #{record.mcc,jdbcType=INTEGER},
+      </if>
+      <if test="record.mnc != null" >
+        mnc = #{record.mnc,jdbcType=INTEGER},
+      </if>
+      <if test="record.lac != null" >
+        lac = #{record.lac,jdbcType=INTEGER},
+      </if>
+      <if test="record.cell != null" >
+        cell = #{record.cell,jdbcType=INTEGER},
+      </if>
+      <if test="record.accuracy != null" >
+        accuracy = #{record.accuracy,jdbcType=INTEGER},
+      </if>
+      <if test="record.geoId != null" >
+        geo_id = #{record.geoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tupleStatus != null" >
+        tuple_status = #{record.tupleStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update repo_cell_station
+    set cell_station_id = #{record.cellStationId,jdbcType=INTEGER},
+      mcc = #{record.mcc,jdbcType=INTEGER},
+      mnc = #{record.mnc,jdbcType=INTEGER},
+      lac = #{record.lac,jdbcType=INTEGER},
+      cell = #{record.cell,jdbcType=INTEGER},
+      accuracy = #{record.accuracy,jdbcType=INTEGER},
+      geo_id = #{record.geoId,jdbcType=INTEGER},
+      tuple_status = #{record.tupleStatus,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yunrang.location.datamgr.mysql.model.RepoCellStationDo" >
+    update repo_cell_station
+    <set >
+      <if test="mcc != null" >
+        mcc = #{mcc,jdbcType=INTEGER},
+      </if>
+      <if test="mnc != null" >
+        mnc = #{mnc,jdbcType=INTEGER},
+      </if>
+      <if test="lac != null" >
+        lac = #{lac,jdbcType=INTEGER},
+      </if>
+      <if test="cell != null" >
+        cell = #{cell,jdbcType=INTEGER},
+      </if>
+      <if test="accuracy != null" >
+        accuracy = #{accuracy,jdbcType=INTEGER},
+      </if>
+      <if test="geoId != null" >
+        geo_id = #{geoId,jdbcType=INTEGER},
+      </if>
+      <if test="tupleStatus != null" >
+        tuple_status = #{tupleStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where cell_station_id = #{cellStationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yunrang.location.datamgr.mysql.model.RepoCellStationDo" >
+    update repo_cell_station
+    set mcc = #{mcc,jdbcType=INTEGER},
+      mnc = #{mnc,jdbcType=INTEGER},
+      lac = #{lac,jdbcType=INTEGER},
+      cell = #{cell,jdbcType=INTEGER},
+      accuracy = #{accuracy,jdbcType=INTEGER},
+      geo_id = #{geoId,jdbcType=INTEGER},
+      tuple_status = #{tupleStatus,jdbcType=INTEGER}
+    where cell_station_id = #{cellStationId,jdbcType=INTEGER}
+  </update>
+</mapper>

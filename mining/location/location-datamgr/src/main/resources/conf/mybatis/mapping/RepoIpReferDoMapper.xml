@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunrang.location.datamgr.mysql.mapper.RepoIpReferDoMapper" >
+  <resultMap id="BaseResultMap" type="com.yunrang.location.datamgr.mysql.model.RepoIpReferDo" >
+    <id column="ip_refer_id" property="ipReferId" jdbcType="INTEGER" />
+    <result column="ip_str" property="ipStr" jdbcType="VARCHAR" />
+    <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="district_code" property="districtCode" jdbcType="VARCHAR" />
+    <result column="district_name" property="districtName" jdbcType="VARCHAR" />
+    <result column="ip_range_id" property="ipRangeId" jdbcType="INTEGER" />
+    <result column="tuple_status" property="tupleStatus" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ip_refer_id, ip_str, province_code, province_name, city_code, city_name, district_code, 
+    district_name, ip_range_id, tuple_status, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yunrang.location.datamgr.mysql.model.RepoIpReferDoCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from repo_ip_refer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from repo_ip_refer
+    where ip_refer_id = #{ipReferId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from repo_ip_refer
+    where ip_refer_id = #{ipReferId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yunrang.location.datamgr.mysql.model.RepoIpReferDoCriteria" >
+    delete from repo_ip_refer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yunrang.location.datamgr.mysql.model.RepoIpReferDo" useGeneratedKeys="true" keyProperty="ipReferId">
+    insert into repo_ip_refer (ip_refer_id, ip_str, province_code, 
+      province_name, city_code, city_name, 
+      district_code, district_name, ip_range_id, 
+      tuple_status, update_time)
+    values (#{ipReferId,jdbcType=INTEGER}, #{ipStr,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, 
+      #{provinceName,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, 
+      #{districtCode,jdbcType=VARCHAR}, #{districtName,jdbcType=VARCHAR}, #{ipRangeId,jdbcType=INTEGER}, 
+      #{tupleStatus,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yunrang.location.datamgr.mysql.model.RepoIpReferDo" useGeneratedKeys="true" keyProperty="ipReferId">
+    insert into repo_ip_refer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ipReferId != null" >
+        ip_refer_id,
+      </if>
+      <if test="ipStr != null" >
+        ip_str,
+      </if>
+      <if test="provinceCode != null" >
+        province_code,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="cityCode != null" >
+        city_code,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="districtCode != null" >
+        district_code,
+      </if>
+      <if test="districtName != null" >
+        district_name,
+      </if>
+      <if test="ipRangeId != null" >
+        ip_range_id,
+      </if>
+      <if test="tupleStatus != null" >
+        tuple_status,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ipReferId != null" >
+        #{ipReferId,jdbcType=INTEGER},
+      </if>
+      <if test="ipStr != null" >
+        #{ipStr,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null" >
+        #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="districtName != null" >
+        #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="ipRangeId != null" >
+        #{ipRangeId,jdbcType=INTEGER},
+      </if>
+      <if test="tupleStatus != null" >
+        #{tupleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yunrang.location.datamgr.mysql.model.RepoIpReferDoCriteria" resultType="java.lang.Integer" >
+    select count(*) from repo_ip_refer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update repo_ip_refer
+    <set >
+      <if test="record.ipReferId != null" >
+        ip_refer_id = #{record.ipReferId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ipStr != null" >
+        ip_str = #{record.ipStr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceCode != null" >
+        province_code = #{record.provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceName != null" >
+        province_name = #{record.provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityCode != null" >
+        city_code = #{record.cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityName != null" >
+        city_name = #{record.cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.districtCode != null" >
+        district_code = #{record.districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.districtName != null" >
+        district_name = #{record.districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ipRangeId != null" >
+        ip_range_id = #{record.ipRangeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tupleStatus != null" >
+        tuple_status = #{record.tupleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update repo_ip_refer
+    set ip_refer_id = #{record.ipReferId,jdbcType=INTEGER},
+      ip_str = #{record.ipStr,jdbcType=VARCHAR},
+      province_code = #{record.provinceCode,jdbcType=VARCHAR},
+      province_name = #{record.provinceName,jdbcType=VARCHAR},
+      city_code = #{record.cityCode,jdbcType=VARCHAR},
+      city_name = #{record.cityName,jdbcType=VARCHAR},
+      district_code = #{record.districtCode,jdbcType=VARCHAR},
+      district_name = #{record.districtName,jdbcType=VARCHAR},
+      ip_range_id = #{record.ipRangeId,jdbcType=INTEGER},
+      tuple_status = #{record.tupleStatus,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yunrang.location.datamgr.mysql.model.RepoIpReferDo" >
+    update repo_ip_refer
+    <set >
+      <if test="ipStr != null" >
+        ip_str = #{ipStr,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null" >
+        district_code = #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="districtName != null" >
+        district_name = #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="ipRangeId != null" >
+        ip_range_id = #{ipRangeId,jdbcType=INTEGER},
+      </if>
+      <if test="tupleStatus != null" >
+        tuple_status = #{tupleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ip_refer_id = #{ipReferId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yunrang.location.datamgr.mysql.model.RepoIpReferDo" >
+    update repo_ip_refer
+    set ip_str = #{ipStr,jdbcType=VARCHAR},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      district_code = #{districtCode,jdbcType=VARCHAR},
+      district_name = #{districtName,jdbcType=VARCHAR},
+      ip_range_id = #{ipRangeId,jdbcType=INTEGER},
+      tuple_status = #{tupleStatus,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where ip_refer_id = #{ipReferId,jdbcType=INTEGER}
+  </update>
+  <select id="selectAscBatchByPrimaryId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  	SELECT * FROM `repo_ip_refer` ORDER BY `repo_ip_refer`.`ip_refer_id` ASC LIMIT #{ipReferId,jdbcType=INTEGER},500
+  </select>
+</mapper>

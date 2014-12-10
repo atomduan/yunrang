@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans	xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+		default-autowire="byName">
+	
+	<import resource="snippet_common.xml" />
+	<import resource="snippet_datamgr.xml" />
+	
+	<bean id="locationIpApiSinaIPRange" class="com.yunrang.location.integration.support.api.ip.LocationIpApiSinaIPRange" />
+	<bean id="locationIpApiAliyun" class="com.yunrang.location.integration.support.api.ip.LocationIpApiAliyun" />
+	<bean id="locationIpApi138" class="com.yunrang.location.integration.support.api.ip.LocationIpApi138" />
+	<bean id="locationIpApiTencent" class="com.yunrang.location.integration.support.api.ip.LocationIpApiTencent" />
+	<bean id="locationIpApiYoudao" class="com.yunrang.location.integration.support.api.ip.LocationIpApiYoudao" />
+	<bean id="locationAPIWeiboCellStation" class="com.yunrang.location.integration.support.api.cell.LocationAPIWeiboCellStation" />
+	<bean id="topwangCellStationUpdater" class="com.yunrang.location.integration.support.file.history.common.TopwangCellStationUpdater" />
+	<bean id="integrationOneShotLocalTask" class="com.yunrang.location.integration.IntegrationOneShotLocalTask" />
+	<bean id="rountineRepoIpRangeRefreshing" class="com.yunrang.location.integration.routine.RountineRepoIpRangeRefreshing" />
+	<bean id="routineRepoIpReferRefreshing" class="com.yunrang.location.integration.routine.RoutineRepoIpReferRefreshing" />
+
+</beans>
