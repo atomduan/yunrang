@@ -26,9 +26,9 @@ function main_sync_update_sync_log() {
 
 
 function main_sync_initialize() {
-	#INITIALIZE SERVER_LIST ARRAY
+	#INITIALIZE DEPLOY_LIST ARRAY
 	index=0
-	for ipaddr in ${SERVER_LIST}
+	for ipaddr in ${DEPLOY_LIST}
 	do
 		server_arr_G[index]=${ipaddr}
 		index=$(( ${index} + 1 ))	
@@ -108,7 +108,7 @@ function main_sync_routine_check() {
 	athead=0
 	begin=0
 	completed=0
-	for addr in ${SERVER_LIST};
+	for addr in ${DEPLOY_LIST};
 	do
 		echo ${addr} "-------------------------------------------------------"
 		count=0
@@ -138,7 +138,7 @@ function main_sync_routine_check() {
 
 
 function main_sync_linear_mode() {
-	for addr in ${SERVER_LIST};
+	for addr in ${DEPLOY_LIST};
 	do
 		echo ${addr} "-------------------------------------------------------"
 		main_sync_target_server ${addr}
