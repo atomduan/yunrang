@@ -63,7 +63,7 @@
 								<descriptorRef>jar-with-dependencies</descriptorRef>
 							</descriptorRefs>
 							<finalName>mapreduce-client</finalName>
-							<appendAssemblyId>false</appendAssemblyId>
+							<appendAssemblyId>true</appendAssemblyId>
 							<archive>
 								<index>true</index>
 								<manifest>
